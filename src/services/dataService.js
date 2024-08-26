@@ -10,7 +10,7 @@ export async function getUser() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${browserData.token}`,
+      Authorization: `Bearer ${browserData.token}`
     },
   };
   const response = await fetch(
@@ -31,7 +31,7 @@ export async function getUserOrders() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${browserData.token}`,
+      Authorization: `Bearer ${browserData.token}`
     },
   };
   const response = await fetch(
@@ -63,7 +63,7 @@ export async function createOrder(cartList, total, user) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${browserData.token}`,
     },
-    body: JSON.stringify(order),
+    body: JSON.stringify(order)
   };
   const response = await fetch(
     `${process.env.REACT_APP_HOST}/660/orders`,
