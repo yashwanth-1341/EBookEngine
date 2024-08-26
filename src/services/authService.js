@@ -1,45 +1,45 @@
-export async function login(authDetail){
-    const requestOptions = {
-        method: "POST",
-        headers: {"content-Type": "application/json"},
-        body: JSON.stringify(authDetail)
-    }
-    const response = await fetch(`${process.env.REACT_APP_HOST}/login`, requestOptions);
-    if(!response.ok){
-        throw { message: response.statusText, status: response.status }; //eslint-disable-line
-    }
-    const data = await response.json();
+export async function login(authDetail) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "content-Type": "application/json" },
+    body: JSON.stringify(authDetail),
+  };
+  const response = await fetch(`${process.env.REACT_APP_HOST}`, requestOptions);
+  if (!response.ok) {
+    throw { message: response.statusText, status: response.status }; //eslint-disable-line
+  }
+  const data = await response.json();
 
-    if(data.accessToken){
+  if (data.accessToken) {
     sessionStorage.setItem("token", JSON.stringify(data.accessToken));
-    sessionStorage.setItem("cbid", JSON.stringify(data.user.id));
-    }
+    sessionStorage.setItem("userid", JSON.stringify(data.user.id));
+  }
 
-    return data;
+  return data;
 }
 
-export async function register(authDetail){
-    const requestOptions = {
-        method: "POST",
-        headers: {"content-Type": "application/json"},
-        body: JSON.stringify(authDetail)
-      }
-  
-      const response = await fetch(`${process.env.REACT_APP_HOST}/register`, requestOptions);
-      if(!response.ok){
-        throw { message: response.statusText, status: response.status }; //eslint-disable-line
-    }
-      const data = await response.json();
-        
-      if(data.accessToken){
-        sessionStorage.setItem("token", JSON.stringify(data.accessToken));
-        sessionStorage.setItem("cbid", JSON.stringify(data.user.id));
-      }
+export async function register(authDetail) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "content-Type": "application/json" },
+    body: JSON.stringify(authDetail),
+  };
 
-      return data;
+  const response = await fetch(`${process.env.REACT_APP_HOST}`, requestOptions);
+  if (!response.ok) {
+    throw { message: response.statusText, status: response.status }; //eslint-disable-line
+  }
+  const data = await response.json();
+
+  if (data.accessToken) {
+    sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+    sessionStorage.setItem("userid", JSON.stringify(data.user.id));
+  }
+
+  return data;
 }
 
-export function logout(){
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("cbid");
+export function logout() {
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("userid");
 }
